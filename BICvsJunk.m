@@ -2,7 +2,7 @@ clear
 clc
 
 rng(1)
-num_samples=60;
+num_samples=600;
 num_simulations = 100;
 num_repetitions=1000;
 p_junkapproach = nan(num_repetitions,1);
