@@ -15,10 +15,10 @@ x_powers = [x.^2, x.^3, x.^4];
 [~,~,r_complex] = regress(y,[x,x_powers]);
 %equation from:
 %https://www.statlect.com/fundamentals-of-statistics/linear-regression-maximum-likelihood
-loglikelihood_complex = -(num_samples/2)*(log(2*pi)-log(var(x)))-1/((2*var(x))*var(r_complex));
+loglikelihood_complex = -(num_samples/2)*(log(2*pi)-log(var(x)))-(1/(2*var(x)))*var(r_complex);
 
 [~,~,r_simple] = regress(y,x);
-loglikelihood_simple = -(num_samples/2)*(log(2*pi)-log(var(x)))-1/((2*var(x))*var(r_simple));
+loglikelihood_simple = -(num_samples/2)*(log(2*pi)-log(var(x)))-(1/(2*var(x)))*var(r_simple);
 
 % We eould expect a junk model would work just as well as the complex model
 loglikelihood_junk_model = zeros(num_simulations,1);
@@ -27,7 +27,7 @@ for simulation_i = 1:num_simulations
     junk_regressors = zscore(rand(num_samples,3));
     [~,~,r_junk] = regress(y,[x junk_regressors]);
     loglikelihood_junk_model(simulation_i) = ...
-         -(num_samples/2)*(log(2*pi)-log(var(x)))-1/((2*var(x))*var(r_junk));
+         -(num_samples/2)*(log(2*pi)-log(var(x)))-(1/(2*var(x)))*var(r_junk);
     waitbar(simulation_i/num_simulations,h,'Running Simulations')
 end
 close(h)
