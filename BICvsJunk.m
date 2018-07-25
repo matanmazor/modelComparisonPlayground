@@ -32,11 +32,11 @@ for repetition_i=1:num_repetitions
     %equation from:
     %https://www.statlect.com/fundamentals-of-statistics/linear-regression-maximum-likelihood
     loglikelihood_complex = -(num_samples/2)*(log(2*pi)-log(var(x)))-(1/(2*var(x)))*var(r_complex);
-    bic_complex = -2*loglikelihood_complex+log(num_samples)*6;
+    bic_complex = -2*loglikelihood_complex+log(num_samples)*5;
     
     [~,~,r_simple] = regress(y,x);
     loglikelihood_simple = -(num_samples/2)*(log(2*pi)-log(var(x)))-(1/(2*var(x)))*var(r_simple);
-    bic_simple = -2*loglikelihood_simple+log(num_samples)*3;
+    bic_simple = -2*loglikelihood_simple+log(num_samples)*2;
 
     loglikelihood_junk_model = zeros(num_simulations,1);
     for simulation_i = 1:num_simulations
